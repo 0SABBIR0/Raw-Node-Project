@@ -5,7 +5,8 @@
 
 //dependencies 
 const http = require('http');
-const url = require('url');
+
+const {handleReqRes} = require('./helpers/handleReqRes')
 
 //app object
 
@@ -26,18 +27,7 @@ app.createServer = () =>{
 };
 
 //Handle Request Response
-app.handleReqRes = (req, res) => {
-    //reqest handling
-    //get the url and parse it
-    const parseUrl = url.parse(req.url, true)
-    const path = parseUrl.path;
-    const trimmedPath = path.replace(/^\/+|\/+$/g, '');
-    const method = req.method.toLowerCase();
-    const queuryStringObject = parseUrl.query;
-    console.log(queuryStringObject);
-    //response handle
-    res.end('Hello Mothafucka');
-};
+app.handleReqRes = handleReqRes;
 
 //Start The server
 app.createServer();
